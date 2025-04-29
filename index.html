@@ -2,41 +2,85 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Simple Calculator</title>
+  <title>Cloud Calculator</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background-color: #f0f2f5;
+      margin: 0;
+    }
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .calculator {
+      background-color: white;
+      padding: 30px 40px;
+      border-radius: 15px;
+      box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    input, select, button {
+      width: 250px;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    h2 {
+      margin-top: 20px;
+      color: #4CAF50;
+    }
+  </style>
 </head>
 <body>
+
   <h1>Cloud Calculator</h1>
 
-  <label>Number 1:</label>
-  <input type="number" id="num1" required><br><br>
+  <div class="calculator">
+    <input type="number" id="num1" placeholder="Enter first number" required><br>
 
-  <label>Number 2:</label>
-  <input type="number" id="num2" required><br><br>
+    <input type="number" id="num2" placeholder="Enter second number" required><br>
 
-  <label>Operation:</label>
-  <select id="operation">
-    <option value="add">Add</option>
-    <option value="subtract">Subtract</option>
-    <option value="multiply">Multiply</option>
-    <option value="divide">Divide</option>
-  </select><br><br>
+    <select id="operation">
+      <option value="add">Add</option>
+      <option value="subtract">Subtract</option>
+      <option value="multiply">Multiply</option>
+      <option value="divide">Divide</option>
+    </select><br>
 
-  <button onclick="calculate()">Calculate</button>
+    <button onclick="calculate()">Calculate</button>
 
-  <h2 id="result"></h2>
+    <h2 id="result"></h2>
+  </div>
 
   <script>
     async function calculate() {
       const num1 = document.getElementById('num1').value;
       const num2 = document.getElementById('num2').value;
       const operation = document.getElementById('operation').value;
+      const url = "https://4xhl629c62.execute-api.us-east-1.amazonaws.com/calculate"; // Use your own API URL
 
       if (!num1 || !num2) {
         document.getElementById('result').innerText = "Please enter both numbers.";
         return;
       }
 
-      const url = "https://4xhl629c62.execute-api.us-east-1.amazonaws.com/calculate"; // replace with your own API endpoint if needed
       const fullUrl = `${url}?num1=${num1}&num2=${num2}&operation=${operation}`;
 
       try {
