@@ -2,8 +2,11 @@ import json
 
 
 def lambda_handler(event, context):
-    # Parse inputs depending on HTTP method
-    method = event.get("httpMethod", "")
+    # Support both REST API and HTTP API v2.0 structure
+    method = event.get("httpMethod") or event.get("requestContext", {}).get(
+        "http", {}
+    ).get("method", "")
+
     if method not in ["GET", "POST"]:
         return {
             "statusCode": 405,
