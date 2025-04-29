@@ -2,6 +2,11 @@ provider "aws" {
   region = "us-east-1"
 }
 
+variable "aws_region" {
+  default = "us-east-1"
+}
+
+
 resource "aws_iam_role" "lambda_exec_role" {
   name = "calculator_lambda_exec_role"
   assume_role_policy = jsonencode({
@@ -72,4 +77,65 @@ resource "aws_apigatewayv2_stage" "default_stage" {
 
 output "api_endpoint" {
   value = "${aws_apigatewayv2_api.api.api_endpoint}/calculate"
+}
+
+# Generate random suffix for uniqueness
+resource "random_id" "bucket_suffix" {
+  byte_length = 4
+}
+
+# Create S3 Bucket
+resource "aws_s3_bucket" "frontend_bucket" {
+  bucket = "calculator-frontend-${random_id.bucket_suffix.hex}"
+  force_destroy = true
+}
+
+# Allow public access settings (IMPORTANT: separate resource)
+resource "aws_s3_bucket_public_access_block" "frontend_bucket_block" {
+  bucket = aws_s3_bucket.frontend_bucket.id
+
+  block_public_acls       = false
+  block_public_policy     = false
+  ignore_public_acls      = false
+  restrict_public_buckets = false
+}
+
+# Setup website configuration separately
+resource "aws_s3_bucket_website_configuration" "frontend_bucket_website" {
+  bucket = aws_s3_bucket.frontend_bucket.id
+
+  index_document {
+    suffix = "index.html"
+  }
+
+  error_document {
+    key = "index.html"
+  }
+}
+
+# Create Public Bucket Policy (Allow anyone to GET files)
+resource "aws_s3_bucket_policy" "frontend_bucket_policy" {
+  bucket = aws_s3_bucket.frontend_bucket.id
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [{
+      Effect = "Allow",
+      Principal = "*",
+      Action = "s3:GetObject",
+      Resource = "${aws_s3_bucket.frontend_bucket.arn}/*"
+    }]
+  })
+}
+
+# Upload frontend index.html file
+resource "aws_s3_object" "frontend_index" {
+  bucket       = aws_s3_bucket.frontend_bucket.id
+  key          = "index.html"
+  source       = "${path.module}/index.html"
+  content_type = "text/html"
+}
+
+output "frontend_url" {
+  value = "http://${aws_s3_bucket.frontend_bucket.bucket}.s3-website-${var.aws_region}.amazonaws.com"
 }
