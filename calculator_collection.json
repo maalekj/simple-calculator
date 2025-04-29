@@ -1,0 +1,615 @@
+{
+	"info": {
+		"_postman_id": "bb33e9ca-9b2a-4496-b069-58ea43df0a7f",
+		"name": "COE558-assignment-4",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5194782"
+	},
+	"item": [
+		{
+			"name": "addition",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://4xhl629c62.execute-api.us-east-1.amazonaws.com/calculate?num1=5&num2=3&operation=add",
+					"protocol": "https",
+					"host": [
+						"4xhl629c62",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"calculate"
+					],
+					"query": [
+						{
+							"key": "num1",
+							"value": "5"
+						},
+						{
+							"key": "num2",
+							"value": "3"
+						},
+						{
+							"key": "operation",
+							"value": "add"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "addition",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://4xhl629c62.execute-api.us-east-1.amazonaws.com/calculate?num1=5&num2=3&operation=add",
+							"protocol": "https",
+							"host": [
+								"4xhl629c62",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"calculate"
+							],
+							"query": [
+								{
+									"key": "num1",
+									"value": "5"
+								},
+								{
+									"key": "num2",
+									"value": "3"
+								},
+								{
+									"key": "operation",
+									"value": "add"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 29 Apr 2025 19:41:00 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "61"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Apigw-Requestid",
+							"value": "JzOz8iJwIAMEJhQ="
+						}
+					],
+					"cookie": [],
+					"body": "{\"num1\": 5.0, \"num2\": 3.0, \"operation\": \"add\", \"result\": 8.0}"
+				}
+			]
+		},
+		{
+			"name": "subtraction",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://4xhl629c62.execute-api.us-east-1.amazonaws.com/calculate?num1=5&num2=3&operation=subtract",
+					"protocol": "https",
+					"host": [
+						"4xhl629c62",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"calculate"
+					],
+					"query": [
+						{
+							"key": "num1",
+							"value": "5"
+						},
+						{
+							"key": "num2",
+							"value": "3"
+						},
+						{
+							"key": "operation",
+							"value": "subtract"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "subtraction",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://4xhl629c62.execute-api.us-east-1.amazonaws.com/calculate?num1=5&num2=3&operation=subtract",
+							"protocol": "https",
+							"host": [
+								"4xhl629c62",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"calculate"
+							],
+							"query": [
+								{
+									"key": "num1",
+									"value": "5"
+								},
+								{
+									"key": "num2",
+									"value": "3"
+								},
+								{
+									"key": "operation",
+									"value": "subtract"
+								}
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 29 Apr 2025 19:41:05 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "66"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Apigw-Requestid",
+							"value": "JzO0vh-AoAMEKpQ="
+						}
+					],
+					"cookie": [],
+					"body": "{\"num1\": 5.0, \"num2\": 3.0, \"operation\": \"subtract\", \"result\": 2.0}"
+				}
+			]
+		},
+		{
+			"name": "invalidOperation",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"num1\": 10,\r\n  \"num2\": 3,\r\n  \"operation\": \"modulo\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://4xhl629c62.execute-api.us-east-1.amazonaws.com/calculate",
+					"protocol": "https",
+					"host": [
+						"4xhl629c62",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"calculate"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "invalidOperation",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"num1\": 10,\r\n  \"num2\": 3,\r\n  \"operation\": \"modulo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://4xhl629c62.execute-api.us-east-1.amazonaws.com/calculate",
+							"protocol": "https",
+							"host": [
+								"4xhl629c62",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"calculate"
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 29 Apr 2025 19:41:08 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "30"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Apigw-Requestid",
+							"value": "JzO1Sj8oIAMEcQQ="
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Invalid operation\"}"
+				}
+			]
+		},
+		{
+			"name": "multiplication",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"num1\": 6,\r\n  \"num2\": 2,\r\n  \"operation\": \"multiply\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://4xhl629c62.execute-api.us-east-1.amazonaws.com/calculate",
+					"protocol": "https",
+					"host": [
+						"4xhl629c62",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"calculate"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "multiplication",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"num1\": 6,\r\n  \"num2\": 2,\r\n  \"operation\": \"multiply\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://4xhl629c62.execute-api.us-east-1.amazonaws.com/calculate",
+							"protocol": "https",
+							"host": [
+								"4xhl629c62",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"calculate"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 29 Apr 2025 19:42:26 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "67"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Apigw-Requestid",
+							"value": "JzPBggz1oAMEJ4g="
+						}
+					],
+					"cookie": [],
+					"body": "{\"num1\": 6.0, \"num2\": 2.0, \"operation\": \"multiply\", \"result\": 12.0}"
+				}
+			]
+		},
+		{
+			"name": "divide",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"num1\": 9,\r\n  \"num2\": 3,\r\n  \"operation\": \"divide\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://4xhl629c62.execute-api.us-east-1.amazonaws.com/calculate",
+					"protocol": "https",
+					"host": [
+						"4xhl629c62",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"calculate"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "divideByZero",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://4xhl629c62.execute-api.us-east-1.amazonaws.com/calculate?num1=5&num2=0&operation=divide",
+					"protocol": "https",
+					"host": [
+						"4xhl629c62",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"calculate"
+					],
+					"query": [
+						{
+							"key": "num1",
+							"value": "5"
+						},
+						{
+							"key": "num2",
+							"value": "0"
+						},
+						{
+							"key": "operation",
+							"value": "divide"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "divideByZero",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://4xhl629c62.execute-api.us-east-1.amazonaws.com/calculate?num1=5&num2=0&operation=divide",
+							"protocol": "https",
+							"host": [
+								"4xhl629c62",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"calculate"
+							],
+							"query": [
+								{
+									"key": "num1",
+									"value": "5"
+								},
+								{
+									"key": "num2",
+									"value": "0"
+								},
+								{
+									"key": "operation",
+									"value": "divide"
+								}
+							]
+						}
+					},
+					"status": "Bad Request",
+					"code": 400,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 29 Apr 2025 19:42:31 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "34"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Apigw-Requestid",
+							"value": "JzPCMh1JIAMEcPw="
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Cannot divide by zero\"}"
+				}
+			]
+		},
+		{
+			"name": "UnsupportedMethod",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://4xhl629c62.execute-api.us-east-1.amazonaws.com/calculate?num1=5&num2=3&operation=add",
+					"protocol": "https",
+					"host": [
+						"4xhl629c62",
+						"execute-api",
+						"us-east-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"calculate"
+					],
+					"query": [
+						{
+							"key": "num1",
+							"value": "5"
+						},
+						{
+							"key": "num2",
+							"value": "3"
+						},
+						{
+							"key": "operation",
+							"value": "add"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "UnsupportedMethod",
+					"originalRequest": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://4xhl629c62.execute-api.us-east-1.amazonaws.com/calculate?num1=5&num2=3&operation=add",
+							"protocol": "https",
+							"host": [
+								"4xhl629c62",
+								"execute-api",
+								"us-east-1",
+								"amazonaws",
+								"com"
+							],
+							"path": [
+								"calculate"
+							],
+							"query": [
+								{
+									"key": "num1",
+									"value": "5"
+								},
+								{
+									"key": "num2",
+									"value": "3"
+								},
+								{
+									"key": "operation",
+									"value": "add"
+								}
+							]
+						}
+					},
+					"status": "Method Not Allowed",
+					"code": 405,
+					"_postman_previewlanguage": "plain",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 29 Apr 2025 19:42:36 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/plain; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "38"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Apigw-Requestid",
+							"value": "JzPC7h7IoAMEcQA="
+						}
+					],
+					"cookie": [],
+					"body": "{\"error\": \"Method DELETE not allowed\"}"
+				}
+			]
+		}
+	]
+}
