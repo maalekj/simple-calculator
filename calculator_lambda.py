@@ -1,17 +1,28 @@
 import json
 
 
+def respond(status, body):
+    return {
+        "statusCode": status,
+        "headers": {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Methods": "OPTIONS,GET,POST",
+            "Access-Control-Allow-Headers": "*",
+        },
+        "body": json.dumps(body),
+    }
+
+
 def lambda_handler(event, context):
-    # Support both REST API and HTTP API v2.0 structure
     method = event.get("httpMethod") or event.get("requestContext", {}).get(
         "http", {}
     ).get("method", "")
 
+    if method == "OPTIONS":
+        return respond(200, {})  # Preflight CORS support
+
     if method not in ["GET", "POST"]:
-        return {
-            "statusCode": 405,
-            "body": json.dumps({"error": f"Method {method} not allowed"}),
-        }
+        return respond(405, {"error": f"Method {method} not allowed"})
 
     try:
         if method == "GET":
@@ -36,12 +47,9 @@ def lambda_handler(event, context):
         else:
             raise ValueError("Invalid operation")
 
-        return {
-            "statusCode": 200,
-            "body": json.dumps(
-                {"num1": num1, "num2": num2, "operation": operation, "result": result}
-            ),
-        }
+        return respond(
+            200, {"num1": num1, "num2": num2, "operation": operation, "result": result}
+        )
 
     except Exception as e:
-        return {"statusCode": 400, "body": json.dumps({"error": str(e)})}
+        return respond(400, {"error": str(e)})
